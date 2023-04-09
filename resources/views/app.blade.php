@@ -9,6 +9,7 @@
 
         <link href="{{ asset('asset/bootstrap.min.css') }}" rel="stylesheet">
 
+        @routes
         @vite(['resources/js/app.js', 'resources/css/app.css'])
         @inertiaHead
     </head>

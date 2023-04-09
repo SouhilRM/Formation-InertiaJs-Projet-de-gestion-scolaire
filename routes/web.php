@@ -15,4 +15,8 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Back-end/Index');
-});
+})->name('toto');
+
+Route::get('/test', function () {
+    return Inertia::render('Back-end/Test');
+})->name('popo');
