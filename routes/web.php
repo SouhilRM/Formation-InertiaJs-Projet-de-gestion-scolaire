@@ -1,22 +1,36 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\NiveauScolaireController;
 
+
+//Dashboard
 Route::get('/', function () {
-    return Inertia::render('Back-end/Index');
-})->name('toto');
+    return Inertia::render('Back-end/Dashboard');
+})->name('Dashboard');
 
-Route::get('/test', function () {
-    return Inertia::render('Back-end/Test');
-})->name('popo');
+/* ========================================Etudiant======================================= */
+    Route::controller(EtudiantController::class)->group(function(){
+
+        Route::get('/etudiant','index')->name('etudiant.index');
+        Route::get('/etudiant/create','create')->name('etudiant.create');
+        //Route::get('/edit/{id}','EditBrand')->name('edit.brand');
+        //Route::post('/update','UpdateBrand')->name('update.brand');
+        //Route::get('/delete/{id}','DeleteBrand')->name('delete.brand');
+
+    });
+/* ========================================/Etudiant======================================= */
+
+/* =====================================NiveauScolaire==================================== */
+    Route::controller(NiveauScolaireController::class)->group(function(){
+
+        Route::get('/niveauscolaire','index')->name('niveauscolaire.index');
+        //Route::post('/store','StoreBrand')->name('store.brand');
+        //Route::get('/edit/{id}','EditBrand')->name('edit.brand');
+        //Route::post('/update','UpdateBrand')->name('update.brand');
+        //Route::get('/delete/{id}','DeleteBrand')->name('delete.brand');
+
+    });
+/* =====================================/NiveauScolaire==================================== */
