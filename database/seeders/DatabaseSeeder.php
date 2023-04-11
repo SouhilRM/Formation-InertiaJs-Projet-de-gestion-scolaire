@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Etudiant;
+use App\Models\NiveauScolaire;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +20,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        NiveauScolaire::create(["nom" => "1ère primaire"]);
+        NiveauScolaire::create(["nom" => "2ème primaire"]);
+        NiveauScolaire::create(["nom" => "3ème primaire"]);
+        NiveauScolaire::create(["nom" => "4ème primaire"]);
+        NiveauScolaire::create(["nom" => "5ème primaire"]);
+
+        Etudiant::factory(20)->create();
     }
 }
