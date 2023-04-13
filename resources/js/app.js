@@ -5,7 +5,6 @@ import { createInertiaApp } from '@inertiajs/vue3'
 import { ZiggyVue } from 'ziggy'
 import Layout from './Pages/Back-end/Layouts/MainLayout.vue'
 
-import "../assets/plugins/jquery/jquery-3.5.1.min.js"
 import "../assets/plugins/bootstrap/js/bootstrap.min.js"
 import "../assets/plugins/pace/pace.min.js"
 import "../assets/plugins/apexcharts/apexcharts.min.js"

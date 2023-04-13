@@ -23,6 +23,10 @@
                         <Link :href="route('Dashboard')"><i class="material-icons-two-tone">dashboard</i>Dashboard</Link>
                     </li>
 
+                    <li :class="{ 'active-page' : $page.component === 'Back-end/NiveauScolaire/IndexNS'}">
+                        <Link :href="route('niveauscolaire.index')"><i class="material-icons-two-tone">star</i>Niveaux Scolaires</Link>
+                    </li> 
+
                     <li>
                         <a href=""><i class="material-icons-two-tone">star</i>Etudiants<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         
@@ -38,9 +42,9 @@
                         
                     </li>
 
-                    <li>
-                        <Link :href="route('niveauscolaire.index')" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</Link>
-                    </li>                
+                     
+                    
+                    
                     <li>
                         <a href="todo.html"><i class="material-icons-two-tone">done</i>Todo</a>
                     </li>

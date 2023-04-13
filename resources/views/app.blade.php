@@ -17,6 +17,8 @@
     <body>
     @inertia
     
+    <script src="{{ asset('asset/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('asset/datatables.min.js') }}"></script>
     <script src="{{ asset('asset/perfect-scrollbar.min.js') }}"></script>
     
     </body>
