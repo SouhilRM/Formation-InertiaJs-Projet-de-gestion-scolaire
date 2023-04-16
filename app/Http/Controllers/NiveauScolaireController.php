@@ -15,4 +15,11 @@ class NiveauScolaireController extends Controller
             ]
         );
     }
+
+    public function store(Request $request){
+        //dd($request->all());
+        NiveauScolaire::create($request->all());
+
+        return redirect()->route('niveauscolaire.index');
+    }
 }

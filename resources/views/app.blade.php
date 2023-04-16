@@ -7,7 +7,11 @@
 
         <title>Gestion scolaire</title>
 
+        <!-- Botstrap v4 -->
         <link href="{{ asset('asset/bootstrap.min.css') }}" rel="stylesheet">
+
+        <!-- le fontawesome pour les icones -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         @routes
         @vite(['resources/js/app.js', 'resources/css/app.css'])
