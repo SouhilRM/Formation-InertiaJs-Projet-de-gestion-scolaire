@@ -42,6 +42,7 @@
 <script setup>
     import { router } from "@inertiajs/vue3";
     import { reactive } from "vue";
+    import { sweetAlert } from "../Components/Sweet";
 
     const form = reactive({ nom: null, })
 
@@ -59,7 +60,7 @@
             {
                 onSuccess: (page) =>{
                     closeModel();
-                    console.log('tous ce passe bien');
+                    sweetAlert('success',"Niveau scolaire créé avec succès.")
                 }
             }
         )

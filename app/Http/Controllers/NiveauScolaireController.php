@@ -11,7 +11,7 @@ class NiveauScolaireController extends Controller
         return inertia(
             'Back-end/NiveauScolaire/IndexNS',
             [
-                "niveauScolaire" => NiveauScolaire::orderBy('nom','ASC')->get(),
+                "niveauScolaire" => NiveauScolaire::latest()->get(),
             ]
         );
     }
@@ -20,6 +20,6 @@ class NiveauScolaireController extends Controller
         //dd($request->all());
         NiveauScolaire::create($request->all());
 
-        return redirect()->route('niveauscolaire.index');
+        return redirect()->back();
     }
 }
