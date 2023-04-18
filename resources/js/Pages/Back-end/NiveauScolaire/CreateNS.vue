@@ -21,7 +21,8 @@
             <form @submit.prevent="soumettre" id="soumettreNS">
             <div class="form-group">
                 <label for="">Intitulé :</label>
-                <input v-model="form.nom" type="text" class="form-control">
+                <input v-model="form.nom" type="text" class="form-control" :class="{'is-invalid' : nameError}">
+                <span v-if="nameError" class="invalid-feedback error">{{ nameError }}</span>
             </div>
             </form>
         </div>
@@ -41,10 +42,11 @@
 
 <script setup>
     import { router } from "@inertiajs/vue3";
-    import { reactive } from "vue";
+    import { reactive,ref } from "vue";
     import { sweetAlert } from "../Components/Sweet";
 
     const form = reactive({ nom: null, })
+    const nameError = ref("");
 
     function closeModel() {
         //cette fonction permet de fermer le model boots en utilisant le jquerry
@@ -61,6 +63,15 @@
                 onSuccess: (page) =>{
                     closeModel();
                     sweetAlert('success',"Niveau scolaire créé avec succès.")
+                },
+
+                //petite remarque concernant la validation je l'ai fais manuellement sans utiliser inertia vue car j'ai qu'un seul champ mais je changerai de methode avec les etudiants
+                onError: (errors) => {
+                    //console.log(errors);
+                    if(nameError != null){
+                        nameError.value = errors.nom
+                    }
+                    sweetAlert('error',"Une erreur s'est produite.")
                 }
             }
         )
