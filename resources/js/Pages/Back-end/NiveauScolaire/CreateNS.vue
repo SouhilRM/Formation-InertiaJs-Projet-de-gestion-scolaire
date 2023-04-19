@@ -14,7 +14,7 @@
 
         <div class="modal-header">
             <h1 class="modal-title fs-5">Nouveau niveau scolaire</h1>
-            <button type="button" class="btn-close" @click="closeModel" aria-label="Close"></button>
+            <button type="button" class="btn-close" @click="closeModel();resetError()" aria-label="Close"></button>
         </div>
 
         <div class="modal-body text-start">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="modal-footer">
-            <button @click="closeModel" type="button" class="btn btn-secondary">Fermer</button>
+            <button @click="closeModel();resetError()" type="button" class="btn btn-secondary">Fermer</button>
             <button form="soumettreNS" type="submit" class="btn btn-primary">Confirmer</button>
         </div>
         
@@ -54,6 +54,9 @@
         //pour vider la valeur du champ
         form.nom = null
     }
+    function resetError(){
+        nameError.value = null
+    }
 
     function soumettre() {
         router.post(
@@ -61,7 +64,8 @@
             form,
             {
                 onSuccess: (page) =>{
-                    closeModel();
+                    closeModel()
+                    resetError()
                     sweetAlert('success',"Niveau scolaire créé avec succès.")
                 },
 
