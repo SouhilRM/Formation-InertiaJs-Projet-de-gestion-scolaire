@@ -28,6 +28,7 @@ Route::get('/', function () {
 
         Route::get('/niveauscolaire','index')->name('niveauscolaire.index');
         Route::post('/niveauscolaire/store','store')->name('niveauscolaire.store');
+        Route::get('/niveauscolaire/{niveauScolaire}','edit')->name('niveauscolaire.edit');
         //Route::get('/edit/{id}','EditBrand')->name('edit.brand');
         //Route::post('/update','UpdateBrand')->name('update.brand');
         //Route::get('/delete/{id}','DeleteBrand')->name('delete.brand');

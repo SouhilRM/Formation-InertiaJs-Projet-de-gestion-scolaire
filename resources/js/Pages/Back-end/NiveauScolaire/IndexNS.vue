@@ -3,12 +3,13 @@
     <div class="row">
     <div class="col">
         <div class="page-description">
-            <h1>index Niveau scolaire</h1>
+            <h1>Liste des niveaux scolaires</h1>
         </div>
     </div>
     </div>
 
     <div class="row">
+        <!-- <span>notre ID : {{ editingElementId }}</span> ce truc est la juste pour verifier si on recupere bien notre id à achaque click-->
     <div class="col">
         <div class="me-2 mb-4 text-end">
             <CreateNS />
@@ -37,7 +38,7 @@
                             
                             <td class="d-flex">
 
-                                <button class="btn btn-info me-4">
+                                <button class="btn btn-info me-4" @click="openEditModal(nv.id)">
                                     <i class="fa-solid fa-pencil"></i>
                                 </button>
 
@@ -56,12 +57,20 @@
 
     </div>
     </div>
+
+    <EditNS 
+        :niveau-scolaire-id="editingElementId"
+        :show-model="showModel"
+        @modal-closed="ModalClosed"
+    />
        
 </template>
 
 <script setup>
 
-    import CreateNS from "./CreateNS.vue"
+    import CreateNS from "./CreateNS.vue";
+    import { ref } from "vue";
+    import EditNS from "./EditNS.vue";
 
     //datatable.js
         $(document).ready(function () {
@@ -105,5 +114,19 @@
         });
     //end-datatable.js
 
+    //le defineProps si tu ne défini pas tes props càd leur type,required,default,... tu mets juste un tableau [] avec le nom de tes props dedans dans le cas contraire tu utilises les {} comme on a fait avec les props de EditNS.vue
     defineProps(['niveauScolaire'])
+
+    const editingElementId = ref(0)
+    let showModel = false
+
+    function openEditModal(id){
+        editingElementId.value = id
+        showModel = true
+    }
+
+    function ModalClosed(){
+        editingElementId.value = 0
+        showModel = false
+    }
 </script>
