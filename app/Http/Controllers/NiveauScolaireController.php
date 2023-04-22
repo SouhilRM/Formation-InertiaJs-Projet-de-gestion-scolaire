@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NiveauScolaire;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Models\NiveauScolaire;
 
 class NiveauScolaireController extends Controller
 {
@@ -32,6 +33,7 @@ class NiveauScolaireController extends Controller
     }
 
     public function edit(NiveauScolaire $niveauScolaire){
-        return response()->json($niveauScolaire);//(["niveauScolaire" => $niveauScolaire])
+        return response()->json($niveauScolaire);
+                             //(["niveauScolaire" => $niveauScolaire])
     }
 }

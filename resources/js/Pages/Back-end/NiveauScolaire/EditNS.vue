@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
         <div class="modal-header">
-            <h1 class="modal-title fs-5">Edition du niveau scolaire {{ form.nom }}</h1>
+            <h1 class="modal-title fs-5">Edition du niveau scolaire " {{ form.nom }} "</h1>
             <button @click="closeModal" type="button" class="btn-close" aria-label="Close"></button>
         </div>
         <div class="modal-body text-start">
@@ -30,6 +30,7 @@
     import { reactive,watch } from "vue";
 
     function openModal(){
+        getNiveauScolaireById()
         $('#editModal').modal('show')
     }
     function closeModal(){
@@ -59,7 +60,9 @@
     function getNiveauScolaireById(){
         axios.get(route("niveauscolaire.edit",{ niveauScolaire: props.niveauScolaireId }))
              .then((response)=>{
-                console.log("response : ", response.data);
+                //console.log("response : ", response.data);
+                form.id = response.data.id
+                form.nom = response.data.nom
              })
              .catch((error)=>{
                 console.log(error);

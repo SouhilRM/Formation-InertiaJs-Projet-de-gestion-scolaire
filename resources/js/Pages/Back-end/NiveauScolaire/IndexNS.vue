@@ -118,15 +118,15 @@
     defineProps(['niveauScolaire'])
 
     const editingElementId = ref(0)
-    let showModel = false
+    const showModel = ref(false)
 
     function openEditModal(id){
         editingElementId.value = id
-        showModel = true
+        showModel.value = true
     }
 
     function ModalClosed(){
         editingElementId.value = 0
-        showModel = false
+        showModel.value = false
     }
 </script>
