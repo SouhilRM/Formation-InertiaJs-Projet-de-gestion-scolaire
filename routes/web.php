@@ -30,8 +30,6 @@ Route::get('/', function () {
         Route::post('/niveauscolaire/store','store')->name('niveauscolaire.store');
         Route::get('/niveauscolaire/edit/{niveauScolaire}','edit')->name('niveauscolaire.edit');
         Route::put('/niveauscolaire/update/{niveauScolaire}','update')->name('niveauscolaire.update');
-        
-        //Route::get('/delete/{id}','DeleteBrand')->name('delete.brand');
-
+        Route::delete('/niveauscolaire/delete/{niveauScolaire}','delete')->name('niveauscolaire.delete');
     });
 /* =====================================/NiveauScolaire==================================== */

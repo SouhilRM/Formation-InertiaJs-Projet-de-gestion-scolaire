@@ -50,4 +50,14 @@ class NiveauScolaireController extends Controller
         }
         return redirect()->back();
     }
+
+    public function delete(NiveauScolaire $niveauScolaire){
+        if(count($niveauScolaire->etudiants)>0){
+            return redirect()->back()->withErrors([
+                "message" => "Ce niveau scolaire ne peut etre supprimer."
+            ]);
+        }
+        $niveauScolaire->delete();
+        return redirect()->back();
+    }
 }

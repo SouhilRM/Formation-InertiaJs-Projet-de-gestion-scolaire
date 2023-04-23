@@ -42,7 +42,7 @@
                                     <i class="fa-solid fa-pencil"></i>
                                 </button>
 
-                                <button class="btn btn-danger me-4">
+                                <button class="btn btn-danger me-4" @click="confirmationDeleteNS(nv.id)">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
 
@@ -72,6 +72,8 @@
     import CreateNS from "./CreateNS.vue";
     import { ref } from "vue";
     import EditNS from "./EditNS.vue";
+    import { sweetConfirm,sweetAlert } from "../Components/Sweet";
+    import { router } from '@inertiajs/vue3';
 
     //datatable.js
         $(document).ready(function () {
@@ -131,5 +133,24 @@
     function ModalClosed(){
         editingElementId.value = 0
         showModel.value = false
+    }
+
+    function deleteNS(id){
+        router.delete(
+            route('niveauscolaire.delete', { niveauScolaire: id }),
+            {
+                onSuccess: (page) =>{
+                    sweetAlert('success',"Niveau scolaire supprimé avec succès.")
+                },
+
+                onError: (errors) => {
+                    //console.log(errors);
+                    sweetAlert('error',errors.message)
+                }
+            }
+        )
+    }
+    function confirmationDeleteNS(id){
+        sweetConfirm("Etes-vous sur de vouloir supprimer ce niveau scolaire ?",()=>deleteNS(id))
     }
 </script>
