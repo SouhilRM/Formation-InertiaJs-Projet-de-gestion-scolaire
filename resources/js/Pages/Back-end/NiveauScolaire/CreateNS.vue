@@ -60,7 +60,7 @@
 
     function soumettre() {
         router.post(
-            '/niveauscolaire/store',
+            route("niveauscolaire.store"),//'/niveauscolaire/store',
             form,
             {
                 onSuccess: (page) =>{

@@ -38,7 +38,7 @@
                             
                             <td class="d-flex">
 
-                                <button class="btn btn-info me-4" @click="openEditModal(nv.id)">
+                                <button class="btn btn-info me-4" @click="openEditModal(nv.id,nv.nom)">
                                     <i class="fa-solid fa-pencil"></i>
                                 </button>
 
@@ -60,6 +60,7 @@
 
     <EditNS 
         :niveau-scolaire-id="editingElementId"
+        :niveau-scolaire-nom="editingElementNom"
         :show-model="showModel"
         @modal-closed="ModalClosed"
     />
@@ -118,10 +119,12 @@
     defineProps(['niveauScolaire'])
 
     const editingElementId = ref(0)
+    const editingElementNom = ref("")
     const showModel = ref(false)
 
-    function openEditModal(id){
+    function openEditModal(id,nom){
         editingElementId.value = id
+        editingElementNom.value = nom
         showModel.value = true
     }
 

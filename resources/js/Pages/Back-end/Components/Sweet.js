@@ -3,7 +3,7 @@ export function sweetAlert(type, message){
         toast: true,
         icon: type,
         title: message,
-        animation: false,
+        //animation: false,
         position: "top-end",
         showConfirmButton: false,
         timer: 3000,

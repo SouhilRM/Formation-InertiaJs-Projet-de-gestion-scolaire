@@ -4,21 +4,21 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
         <div class="modal-header">
-            <h1 class="modal-title fs-5">Edition du niveau scolaire " {{ form.nom }} "</h1>
-            <button @click="closeModal" type="button" class="btn-close" aria-label="Close"></button>
+            <h1 class="modal-title fs-5">Edition du niveau scolaire " {{ props.niveauScolaireNom }} "</h1>
+            <button @click="closeModal();resetError()" type="button" class="btn-close" aria-label="Close"></button>
         </div>
         <div class="modal-body text-start">
-            <form id="soumettreNS">
+            <form id="updateNS" @submit.prevent="update">
             <div class="form-group">
                 <label for="">Intitulé :</label>
-                <input type="text" class="form-control" v-model="form.nom" :class="{'is-invalid' : form.nameError}">
-                <span v-if="form.nameError" class="invalid-feedback error">{{ form.nameError }}</span>
+                <input type="text" class="form-control" v-model="form.nom" :class="{'is-invalid' : nameError}">
+                <span v-if="nameError" class="invalid-feedback error">{{ nameError }}</span>
             </div>
             </form>
         </div>
         <div class="modal-footer">
-            <button @click="closeModal" type="button" class="btn btn-secondary">Anuler</button>
-            <button form="soumettreNS" type="button" class="btn btn-primary">Confirmer</button>
+            <button @click="closeModal();resetError()" type="button" class="btn btn-secondary">Anuler</button>
+            <button form="updateNS" type="submit" class="btn btn-primary">Confirmer</button>
         </div>
         </div>
     </div>
@@ -27,7 +27,9 @@
 
 <script setup>
     import axios from "axios";
-    import { reactive,watch } from "vue";
+    import { reactive,watch,ref } from "vue";
+    import { router } from '@inertiajs/vue3';
+    import { sweetAlert } from "../Components/Sweet";
 
     function openModal(){
         getNiveauScolaireById()
@@ -42,7 +44,6 @@
     const form = reactive({
         id: "",
         nom: "",
-        nameError: ""
     })
 
     //ici on ne mets pas nos props dans un tab[] on prefere utiliser les {} car on specifie plus
@@ -50,6 +51,9 @@
         niveauScolaireId: {
             type: Number,
             required: true
+        },
+        niveauScolaireNom: {
+            type: String
         },
         showModel: {
             type: Boolean,
@@ -80,4 +84,33 @@
             }
         }
     )
+
+    const nameError = ref("")
+    function resetError(){
+        nameError.value = null
+    }
+
+    function update() {
+        router.put(
+            //via l'url: `/niveauscolaire/update/${props.niveauScolaire.niveauScolaireId}`,
+            //via la route: 
+            route('niveauscolaire.update', { niveauScolaire: props.niveauScolaireId }),
+            form,
+            {
+                onSuccess: (page) =>{
+                    closeModal()
+                    resetError()
+                    sweetAlert('success',"Niveau scolaire modifié avec succès.")
+                },
+
+                onError: (errors) => {
+                    //console.log(errors);
+                    if(nameError != null){
+                        nameError.value = errors.nom
+                    }
+                    sweetAlert('error',"Une erreur s'est produite.")
+                }
+            }
+        )
+    }
 </script>
