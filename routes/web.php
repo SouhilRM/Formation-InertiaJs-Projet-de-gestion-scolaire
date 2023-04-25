@@ -16,6 +16,7 @@ Route::get('/', function () {
 
         Route::get('/etudiant','index')->name('etudiant.index');
         Route::get('/etudiant/create','create')->name('etudiant.create');
+        Route::post('/etudiant/store','store')->name('etudiant.store');
         //Route::get('/edit/{id}','EditBrand')->name('edit.brand');
         //Route::post('/update','UpdateBrand')->name('update.brand');
         //Route::get('/delete/{id}','DeleteBrand')->name('delete.brand');
