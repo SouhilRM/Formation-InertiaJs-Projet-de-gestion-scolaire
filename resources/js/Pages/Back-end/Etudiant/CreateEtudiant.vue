@@ -73,7 +73,7 @@
                     <div class="row mb-3">
                         <div class="col-6">
                             <legend class="col-form-label col-2">Photot</legend>
-                            <input class="form-control col-10" type="file" @input="test($event)">
+                            <input class="form-control col-10" type="file" @input="showImage($event)">
                         </div>
                     </div>
                     <div class="row">
@@ -112,15 +112,14 @@
     })
 
     const myImage = ref("");
-    function test(event){
+    function showImage(event){
         var src = URL.createObjectURL(event.target.files[0])
         myImage.value = src
         form.photot = event.target.files[0]
     }
 
     function soumettre(){
-        console.log(form);
-
+        //console.log(form);
         form.post(route('etudiant.store'),{
             onSuccess: (page) =>{
                 sweetAlert('success',"Etudiant ajouté avec succès.")

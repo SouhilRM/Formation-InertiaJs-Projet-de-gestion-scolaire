@@ -45,9 +45,11 @@ class EtudiantController extends Controller
 
         $etudiant = Etudiant::create($request->all());
 
+        //si l'utilisateur à séléctionner une photot
         $photot = $request->file('photot');
         if($photot){
             $fileName = hexdec(uniqid()).'.'.$photot->getClientOriginalExtension();
+            //il va etre stocké dans le dossier "storage->app->public" et il va creer le dossier photot automatiquement
             $filePath = $photot->storeAs("photot", $fileName, "public");
             $etudiant->photot = $filePath;
             $etudiant->save();

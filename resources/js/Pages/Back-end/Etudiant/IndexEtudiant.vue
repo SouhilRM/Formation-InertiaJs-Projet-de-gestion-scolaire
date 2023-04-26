@@ -17,21 +17,23 @@
 
             <thead>
                 <tr>
-                    <th width="25%">Etudiant</th>
-                    <th width="25%">Nom</th>
-                    <th width="20%">Niveau scolaire</th>
-                    <th width="15%">Age</th>
-                    <th width="15%">Actions</th>
+                    <th>Etudiant</th>
+                    <th>Nom</th>
+                    <th>Niveau scolaire</th>
+                    <th>Age</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr v-for="etudiant in etudiants" :key="etudiant.id">
-                    <td>ici photot</td>
+                    <td>
+                        <img :src="showImage(etudiant)" alt="" style="width:100px;height:100px;border-radius:60px;">
+                    </td>
                     <td>{{ etudiant.nom }} {{ etudiant.prenom }}</td>
                     <td>{{ etudiant.niveau_scolaire.nom }}</td>
                     <td>{{ etudiant.age }}</td>
-                    <td class="d-flex">
+                    <td>
                         <button class="btn btn-info me-4">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
@@ -94,5 +96,17 @@
     //end-datatable.js
 
     defineProps(['etudiants'])
+
+    function showImage(etudiant){
+        if(etudiant.photot){
+            return 'storage/'+etudiant.photot
+        }
+        else if(etudiant.sex === 'Garcon'){
+            return 'storage/photot/homme_default.png'
+        }
+        else{
+            return 'storage/photot/femme_default.png'
+        }
+    }
 
 </script>

@@ -130,7 +130,7 @@
                                         <div class="notifications-dropdown-item">
                                             <div class="notifications-dropdown-item-image">
                                                 <span class="notifications-badge">
-                                                    <img src="../../assets/images/avatars/avatar.png" alt="">
+                                                    <img src="" alt="">
                                                 </span>
                                             </div>
                                             <div class="notifications-dropdown-item-text">
@@ -143,7 +143,7 @@
                                         <div class="notifications-dropdown-item">
                                             <div class="notifications-dropdown-item-image">
                                                 <span class="notifications-badge">
-                                                    <img src="../../assets/images/avatars/avatar.png" alt="">
+                                                    <img src="" alt="">
                                                 </span>
                                             </div>
                                             <div class="notifications-dropdown-item-text">
