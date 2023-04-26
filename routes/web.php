@@ -19,7 +19,7 @@ Route::get('/', function () {
         Route::post('/etudiant/store','store')->name('etudiant.store');
         //Route::get('/edit/{id}','EditBrand')->name('edit.brand');
         //Route::post('/update','UpdateBrand')->name('update.brand');
-        //Route::get('/delete/{id}','DeleteBrand')->name('delete.brand');
+        Route::delete('/etudiant/delete/{etudiant}','delete')->name('etudiant.delete');
 
     });
 /* ========================================/Etudiant======================================= */

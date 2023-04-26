@@ -38,7 +38,7 @@
                             <i class="fa-solid fa-pencil"></i>
                         </button>
 
-                        <button class="btn btn-danger me-4">
+                        <button class="btn btn-danger me-4" @click="confirmationDelete(etudiant.id)">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
@@ -52,6 +52,9 @@
 </template>
 
 <script setup>
+
+    import { sweetConfirm,sweetAlert } from "../Components/Sweet";
+    import { router } from '@inertiajs/vue3';
 
     //datatable.js
         $(document).ready(function () {
@@ -107,6 +110,26 @@
         else{
             return 'storage/photot/femme_default.png'
         }
+    }
+
+    function confirmationDelete(id){
+        sweetConfirm("Etes-vous sur de vouloir retirer cet étudiant ?",()=>deleteEtudiant(id))
+    }
+
+    function deleteEtudiant(id){
+        router.delete(
+            route('etudiant.delete', { etudiant: id }),
+            {
+                onSuccess: (page) =>{
+                    sweetAlert('success',"Etudiant retiré avec succès.")
+                },
+
+                onError: (errors) => {
+                    //console.log(errors);
+                    sweetAlert('error',errors.message)
+                }
+            }
+        )
     }
 
 </script>

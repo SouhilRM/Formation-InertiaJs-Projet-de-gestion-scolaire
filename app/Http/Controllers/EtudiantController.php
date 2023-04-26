@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Etudiant;
 use App\Models\NiveauScolaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EtudiantController extends Controller
 {
@@ -56,5 +57,15 @@ class EtudiantController extends Controller
         }
 
         return redirect()->route('etudiant.index');
+    }
+
+    public function delete(Etudiant $etudiant){
+
+        if($etudiant->photot){
+            //dd($etudiant->photot);
+            Storage::delete('public/'.$etudiant->photot);
+        }
+        $etudiant->delete();
+        return redirect()->back();
     }
 }
