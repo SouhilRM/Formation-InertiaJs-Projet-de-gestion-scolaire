@@ -68,4 +68,48 @@ class EtudiantController extends Controller
         $etudiant->delete();
         return redirect()->back();
     }
+
+    public function edit(Etudiant $etudiant){
+        return inertia(
+            'Back-end/Etudiant/EditEtudiant',
+            [
+                "niveauxScolaires" => NiveauScolaire::all(),
+                'etudiant' => $etudiant
+            ]
+        );
+    }
+
+    public function update(Request $request, Etudiant $etudiant){
+        $request->validate([
+            "nom" => "required",
+            "prenom" => "required",
+            "sex" => "required",
+            "age" => "required|numeric",
+            "niveau_scolaire_id" => "required|exists:niveau_scolaires,id"
+        ],[
+            "nom.required" => "Le nom de l'étudiant est requis.",
+            "prenom.required" => "Le prenom de l'étudiant est requis.",
+            "sex.required" => "Le sex de l'étudiant est requis.",
+            "age.required" => "L'age de l'étudiant est requis.",
+            "age.numeric" => "Donnez un age valide",
+            "niveau_scolaire_id.required" => "Le niveau scolaire de l'étudiant est requis.",
+            "niveau_scolaire_id.exists" => "Ce niveau scolaire n'existe pas"
+        ]);
+        $photot = $request->file('photot');
+        
+        if($photot){
+            Storage::delete('public/'.$etudiant->photot);
+        }
+        $etudiant->update($request->all());
+        
+        if($photot){
+            //Storage::delete('public/'.$etudiant->photot);
+            $fileName = hexdec(uniqid()).'.'.$photot->getClientOriginalExtension();
+            $filePath = $photot->storeAs("photot", $fileName, "public");
+            $etudiant->photot = $filePath;
+            $etudiant->save();
+        }
+
+        return redirect()->back();
+    }
 }

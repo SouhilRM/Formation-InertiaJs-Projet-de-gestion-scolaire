@@ -34,9 +34,9 @@
                     <td>{{ etudiant.niveau_scolaire.nom }}</td>
                     <td>{{ etudiant.age }}</td>
                     <td>
-                        <button class="btn btn-info me-4">
+                        <Link :href="route('etudiant.edit', { etudiant: etudiant.id })" class="btn btn-info me-4">
                             <i class="fa-solid fa-pencil"></i>
-                        </button>
+                        </Link>
 
                         <button class="btn btn-danger me-4" @click="confirmationDelete(etudiant.id)">
                             <i class="fa-solid fa-trash"></i>
@@ -54,7 +54,7 @@
 <script setup>
 
     import { sweetConfirm,sweetAlert } from "../Components/Sweet";
-    import { router } from '@inertiajs/vue3';
+    import { router,Link } from '@inertiajs/vue3';
 
     //datatable.js
         $(document).ready(function () {
@@ -131,5 +131,4 @@
             }
         )
     }
-
 </script>
