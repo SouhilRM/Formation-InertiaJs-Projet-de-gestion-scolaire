@@ -131,6 +131,7 @@
 
     function editEtudiant(){
         //console.log(form);
+        //pk utiliser le POST au lieu du PUT car quand t'as une photot dans tes champs le PUT ne marche pas
         form.post(route('etudiant.update', { etudiant: props.etudiant.id }),{
             onSuccess: (page) =>{
                 sweetAlert('success',"Etudiant mis à jour avec succès.")
